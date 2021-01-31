@@ -7,12 +7,32 @@
     <title>Stock app</title>
 </head>
 <body>
-    <div>
+    <header>
         <h1>Stock App</h1>
+    </header>
+    <div id="LoadingDiv">
+        Loading...
     </div>
-    <canvas  id="stockData"></canvas >
+    <main class="charts">
+        <div class="canvasContainer">
+            <canvas class="stockCanvas" id="stockData"></canvas>
+            <div class="moreData"></div>
+        </div>
+        <div class="canvasContainer">
+            <canvas class="stockCanvas"  id="stockData2"></canvas>
+            <div class="moreData"></div>
+        </div>
+        <!--
+        <div class="canvasContainer">
+            <canvas class="stockCanvas"  id="stockData3"></canvas>
+        </div>
+        <div class="canvasContainer">
+            <canvas class="stockCanvas"  id="stockData4"></canvas>
+        </div>
+        -->
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-    <script src="./script.js">
+    <script type="module" defer src="./script.js">
     </script>
 </body>
 </html>

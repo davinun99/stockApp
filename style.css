@@ -1,0 +1,21 @@
+.stockCanvas{
+    border: 1px solid;;
+}
+.canvasContainer{
+    width: 45vw;
+    height: 80vh;
+}
+header{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.charts{
+    display: flex;
+    justify-content: space-around;
+}
+.moreData {
+    margin-top: 1rem;
+}

@@ -1,3 +1,6 @@
+import {mockingData} from './js/apiUtils.js';
+import graphData from './js/graphUtils.js';
+
 const useFulLaterMaybe = () => {
 
     for( var [date, data] of Object.entries( objRes['Time Series (Daily)'] )){
@@ -11,34 +14,22 @@ const useFulLaterMaybe = () => {
     }
 }
 
-const apiKey = 'OBGOGP4LNRC54O4U';
-const symbol = 'AAPL';
-const apiUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
-const apiCompanyUrl = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${apiKey}`;
-const getData = async () => {
-    const response = await fetch(apiUrl);
-    const objRes = await response.json();
-    const responseCo = await fetch(apiUrl);
-    const objResCo = await responseCo.json();
-    //console.log(objRes['Time Series (Daily)']);
-    //Convert map to 2 arrays
-    const dividedData = Object.entries( objRes['Time Series (Daily)'] );
-    const labels = dividedData.map(elmt => elmt[0]);
-    const dataset = {
-        label: symbol,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: dividedData.map( elmt => parseFloat(elmt[1]['2. high']) ).reverse()
-    };
-    const ctx = document.getElementById('stockData').getContext('2d');
-    var chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels.reverse(),
-            datasets: [
-                dataset
-            ]
-        }
-    });
+const showLoading = (value) => {
+    const loadDiv = document.getElementById('LoadingDiv');
+    if (value) {
+        loadDiv.innerHTML = 'Loading...';
+    }else{
+        loadDiv.innerHTML = '';
+    }
 }
-getData();
+
+const canvasContainer = document.getElementsByClassName('canvasContainer');
+//const ctx = document.getElementById('stockData').getContext('2d');
+//const ctx2 = document.getElementById('stockData2').getContext('2d');
+
+//let objRes = await apiCall(symbol);
+let objRes = mockingData('AAPL');
+let objRes2 = mockingData('TSLA');
+
+graphData(objRes, canvasContainer[0], showLoading);
+graphData(objRes2, canvasContainer[1], showLoading);
